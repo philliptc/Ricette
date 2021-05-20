@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.AddRecipeFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBackAddRecipeFragment"
+                android:layout_width="20dp"
+                android:layout_height="18dp"
+                android:background="@drawable/ic_baseline_arrow_back_24"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="18dp"/>
+
+            <TextView
+                android:id="@+id/tvAddRecipeFragmentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Recipe"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@+id/btnBackAddRecipeFragment"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="8dp"/>
+
+            <LinearLayout
+                android:id="@+id/lnAddRecipeForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/tvAddRecipeFragmentTitle"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="36dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recipe Name"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
+
+                <EditText
+                    android:id="@+id/etFormRecipeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/style_edit_text_add_recipe_form"
+                    android:hint="Enter recipe name here"
+                    android:textSize="16dp"
+                    android:inputType="text"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ingredients"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
+
+                <EditText
+                    android:id="@+id/etFormIngredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@drawable/style_edit_text_add_recipe_form"
+                    android:hint="Enter recipe ingredients here"
+                    android:textSize="16dp"
+                    android:gravity="left"
+                    android:inputType="textMultiLine"
+                    android:padding="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Methods"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
+
+                <EditText
+                    android:id="@+id/etFormMethods"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@drawable/style_edit_text_add_recipe_form"
+                    android:hint="Enter recipe methods here"
+                    android:textSize="16dp"
+                    android:gravity="left"
+                    android:inputType="textMultiLine"
+                    android:padding="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Recipe Picture"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"/>
+
+
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+
+
+</FrameLayout>
