@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.DetailRecipeFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBackDetailRecipeFragment"
+                android:layout_width="20dp"
+                android:layout_height="18dp"
+                android:background="@drawable/ic_baseline_arrow_back_24"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="18dp"/>
+
+            <TextView
+                android:id="@+id/tvNamaDetailRecipeFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Resep"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@+id/btnBackDetailRecipeFragment"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnEditDetailRecipeFragment"
+                android:layout_width="50dp"
+                android:layout_height="29dp"
+                android:text="Edit"
+                android:textColor="@color/white"
+                android:background="@drawable/edit_button"
+                android:layout_toRightOf="@id/tvNamaDetailRecipeFragment"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="125dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDeleteDetailRecipeFragment"
+                android:layout_width="57dp"
+                android:layout_height="29dp"
+                android:background="@drawable/delete_button"
+                android:text="Delete"
+                android:textColor="@color/white"
+                android:layout_toRightOf="@id/btnEditDetailRecipeFragment"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/lnDetailRecipeForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/tvNamaDetailRecipeFragment"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="36dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnRecipePictureDetailRecipe"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@drawable/icon_add_recipe_picture"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ingridients"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/etRecipeNameDetailRecipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/style_edit_text_add_recipe_form"
+                    android:text="1 tbsp olive oil
+                    \n1 onion , finely chopped
+                    \n2 garlic cloves , crushed
+                    \n120g chorizo , diced
+                    \n2 x 400g cans chopped tomatoes
+                    \n1 tsp caster sugar
+                    \n600g fresh gnocchi
+                    \n125g mozzarella ball, cut into chunks small bunch of basil , torn green salad , to serve"
+                    android:textSize="16dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Methods"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/etMethodsDetailRecipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/style_edit_text_add_recipe_form"
+                    android:text="STEP 1 \nHeat the oil in a medium pan over a medium heat. Fry the onion and garlic for 8-10 mins until soft. Add the chorizo and fry for 5 mins more. Tip in the tomatoes and sugar, and season. Bring to a simmer, then add the gnocchi and cook for 8 mins, stirring often, until soft. Heat the grill to high.
+                    \n\nSTEP 2
+                    \nStir ¾ of the mozzarella and most of the basil through the gnocchi. Divide the mixture between six ovenproof ramekins, or put in one baking dish. Top with the remaining mozzarella, then grill for 3 mins, or until the cheese is melted and golden. Season, scatter over the remaining basil and serve with green salad."
+                    android:textSize="16dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"/>
+
+
+
+
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+
+
+
+    </ScrollView>
+
+</FrameLayout>
