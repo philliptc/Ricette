@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.RecipeListFragment"
+    android:background="@color/main_color">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvRecipeListTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recipes List"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSetting"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:background="@drawable/ic_baseline_settings_24"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="14dp"
+            android:layout_marginRight="10dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMain"
+            android:layout_width="340dp"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tvRecipeListTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAddRecipe"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/icon_add_recipe"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnTimer"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/icon_timer"
+            android:layout_toLeftOf="@id/btnAddRecipe"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="26dp"/>
+
+
+    </RelativeLayout>
+
+</FrameLayout>
