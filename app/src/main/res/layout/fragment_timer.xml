@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.TimerFragment"
+    android:background="@color/main_color">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBackTimerFragment"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/ic_baseline_arrow_back_24" />
+
+        <TextView
+            android:id="@+id/tvTimerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Timer"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_toRightOf="@id/btnBackTimerFragment"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="8dp"/>
+        
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvTimer"
+            android:layout_width="340dp"
+            android:layout_height="150dp"
+            app:cardCornerRadius="23dp"
+            android:layout_below="@id/tvTimerTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal">
+
+                <EditText
+                    android:id="@+id/etTimerHours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:textSize="56dp"
+                    android:maxLength="2"/>
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textSize="56dp"
+                    android:gravity="center"/>
+
+                <EditText
+                    android:id="@+id/etTimerMinutes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:textSize="56dp"
+                    android:maxLength="2"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textSize="56dp"
+                    android:gravity="center"/>
+
+                <EditText
+                    android:id="@+id/etTimerSeconds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:textSize="56dp"
+                    android:maxLength="2"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cvTimer"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnStartStopTimer"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:text="Start"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                android:textAllCaps="false"
+                android:background="@drawable/style_button_orange"
+                android:layout_marginRight="18dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnResetTimer"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:text="Reset"
+                android:textColor="@color/orange_1"
+                android:textSize="24dp"
+                android:textAllCaps="false"
+                android:background="@drawable/style_button_dark_orange_stroke"
+                android:layout_marginLeft="18dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

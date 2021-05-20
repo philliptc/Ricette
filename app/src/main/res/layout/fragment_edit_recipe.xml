@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.AddRecipeFragment">
+    tools:context=".fragments.EditRecipeFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnBackAddRecipeFragment"
+                android:id="@+id/btnBackEditRecipeFragment"
                 android:layout_width="20dp"
                 android:layout_height="18dp"
                 android:background="@drawable/ic_baseline_arrow_back_24"
@@ -24,13 +24,13 @@
                 android:layout_marginTop="18dp"/>
 
             <TextView
-                android:id="@+id/tvAddRecipeFragmentTitle"
+                android:id="@+id/tvEditRecipeFragmentTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Recipe"
+                android:text="Edit Recipe"
                 android:textSize="18dp"
                 android:textColor="@color/black"
-                android:layout_toRightOf="@+id/btnBackAddRecipeFragment"
+                android:layout_toRightOf="@+id/btnBackEditRecipeFragment"
                 android:layout_marginTop="14dp"
                 android:layout_marginLeft="8dp"/>
 
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_below="@+id/tvAddRecipeFragmentTitle"
+                android:layout_below="@+id/tvEditRecipeFragmentTitle"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="36dp">
@@ -53,7 +53,7 @@
                     android:layout_marginBottom="8dp"/>
 
                 <EditText
-                    android:id="@+id/etFormAddRecipeName"
+                    android:id="@+id/etFormEditRecipeName"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@drawable/style_edit_text_add_recipe_form"
@@ -73,7 +73,7 @@
                     android:layout_marginTop="24dp"/>
 
                 <EditText
-                    android:id="@+id/etFormAddIngredients"
+                    android:id="@+id/etFormEditIngredients"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:background="@drawable/style_edit_text_add_recipe_form"
@@ -93,7 +93,7 @@
                     android:layout_marginTop="24dp"/>
 
                 <EditText
-                    android:id="@+id/etFormAddMethods"
+                    android:id="@+id/etFormEditMethods"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:background="@drawable/style_edit_text_add_recipe_form"
@@ -114,20 +114,20 @@
                     android:layout_marginTop="24dp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnAddRecipePicture"
+                    android:id="@+id/btnEditRecipePicture"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:background="@drawable/icon_add_recipe_picture"/>
 
             </LinearLayout>
-            
+
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnAddFragmentAddRecipe"
+                android:id="@+id/btnEditFragmentAddRecipe"
                 android:layout_width="220dp"
                 android:layout_height="55dp"
                 android:layout_below="@+id/lnAddRecipeForm"
                 android:background="@drawable/style_button_orange"
-                android:text="Add"
+                android:text="Edit"
                 android:textAllCaps="false"
                 android:textSize="21dp"
                 android:textColor="@color/white"
@@ -138,8 +138,6 @@
 
 
     </ScrollView>
-
-
 
 
 
