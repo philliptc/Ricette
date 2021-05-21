@@ -1,10 +1,14 @@
 package com.example.ricette.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import com.example.ricette.DataObjectRecipe
 import com.example.ricette.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,6 +25,12 @@ class AddRecipeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private val data_ObjectRecipe : MutableList<DataObjectRecipe> = ArrayList()
+    private lateinit var etRecipeName : EditText
+    private lateinit var etIngridients : EditText
+    private lateinit var etMethods : EditText
+    private lateinit var btnRecipePicture : Button
+    private lateinit var btnAddRecipe: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +46,37 @@ class AddRecipeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_recipe, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        etRecipeName = view.findViewById(R.id.etFormAddRecipeName)
+        etIngridients = view.findViewById(R.id.etFormAddIngredients)
+        etMethods = view.findViewById(R.id.etFormAddMethods)
+        btnRecipePicture = view.findViewById(R.id.btnAddRecipePicture)
+        btnAddRecipe = view.findViewById(R.id.btnAddFragmentAddRecipe)
+
+
+        btnRecipePicture.setOnClickListener {
+            val gallery = Intent()
+            gallery.type = "image/*"
+            gallery.action = Intent.ACTION_GET_CONTENT
+            startActivityForResult(gallery, 100)
+
+            //open camera belom
+        }
+
+        btnAddRecipe.setOnClickListener {
+            val recipeName = etRecipeName.text.toString()
+            val ingridients = etIngridients.text.toString()
+            val methods = etMethods.text.toString()
+
+            data_ObjectRecipe.add(DataObjectRecipe(recipeName,ingridients,methods)) //parameter terakhir kurang uri image picture
+        }
+
+
+
     }
 
     companion object {

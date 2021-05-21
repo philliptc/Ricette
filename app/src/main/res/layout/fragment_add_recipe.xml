@@ -117,7 +117,7 @@
                     android:id="@+id/btnAddRecipePicture"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:background="@drawable/icon_add_recipe_picture"/>
+                    android:background="@drawable/icon_add_recipe_picture" />
 
             </LinearLayout>
             
