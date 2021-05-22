@@ -56,6 +56,7 @@ class RecipeListCustomAdapter(
                 val recipeIngridients = data[adapterPosition].ingridients
                 val recipeMethods = data[adapterPosition].method
                 val recipePictureUri = data[adapterPosition].recipepicture
+                val dataIndex = adapterPosition
 
                 val detailRecipeFragment = DetailRecipeFragment()
                 val bundle = Bundle()
@@ -64,6 +65,7 @@ class RecipeListCustomAdapter(
                 bundle.putString("recipeIngridients", recipeIngridients)
                 bundle.putString("recipeMethods", recipeMethods)
                 bundle.putString("recipePictureUri", recipePictureUri.toString())
+                bundle.putInt("dataIndex", dataIndex)
                 detailRecipeFragment.arguments = bundle
 
                 val fragmentManager = fragment.fragmentManager
