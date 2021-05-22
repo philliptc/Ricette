@@ -85,7 +85,6 @@
                     android:id="@+id/etRecipeNameDetailRecipe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/style_edit_text_add_recipe_form"
                     android:text="1 tbsp olive oil
                     \n1 onion , finely chopped
                     \n2 garlic cloves , crushed
@@ -111,13 +110,13 @@
                     android:id="@+id/etMethodsDetailRecipe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/style_edit_text_add_recipe_form"
                     android:text="STEP 1 \nHeat the oil in a medium pan over a medium heat. Fry the onion and garlic for 8-10 mins until soft. Add the chorizo and fry for 5 mins more. Tip in the tomatoes and sugar, and season. Bring to a simmer, then add the gnocchi and cook for 8 mins, stirring often, until soft. Heat the grill to high.
                     \n\nSTEP 2
                     \nStir ¾ of the mozzarella and most of the basil through the gnocchi. Divide the mixture between six ovenproof ramekins, or put in one baking dish. Top with the remaining mozzarella, then grill for 3 mins, or until the cheese is melted and golden. Season, scatter over the remaining basil and serve with green salad."
                     android:textSize="16dp"
                     android:paddingLeft="8dp"
-                    android:paddingRight="8dp"/>
+                    android:paddingRight="8dp"
+                    android:layout_marginBottom="80dp"/>
 
 
 

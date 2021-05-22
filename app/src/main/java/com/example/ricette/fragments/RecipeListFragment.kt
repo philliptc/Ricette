@@ -38,6 +38,10 @@ class RecipeListFragment : Fragment() {
         }
     }
 
+    init {
+        data_ObjectRecipe.add(DataObjectRecipe("asd","asd","asdasdsda\nasdsadsda"))
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -71,7 +75,6 @@ class RecipeListFragment : Fragment() {
                 commit()
             }
         }
-        data_ObjectRecipe.add(DataObjectRecipe("asd","asd","asdasdsda\nasdsadsda"))
 
         val layouManager = GridLayoutManager(view.context, 2)
         val adapter = RecipeListCustomAdapter(data_ObjectRecipe, this)
