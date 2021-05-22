@@ -59,10 +59,10 @@ class DetailRecipeFragment : Fragment() {
         btnDeleteDetailRecipeFragment.setOnClickListener {
             data_ObjectRecipe.remove(dataIndex)
             val fragmentManager = fragmentManager
-            val detailRecipeFragment = DetailRecipeFragment()
+            val recipeListFragment = RecipeListFragment()
 
             fragmentManager?.beginTransaction()?.apply {
-                replace(R.id.flMainActivity, detailRecipeFragment)
+                replace(R.id.flMainActivity, recipeListFragment)
                 remove(this@DetailRecipeFragment)
                 commit()
             }
