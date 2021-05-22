@@ -117,11 +117,32 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="24dp"/>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnAddRecipePicture"
+                <ImageView
+                    android:id="@+id/ivRecipePicture"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:background="@drawable/icon_add_recipe_picture" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnGalleryAddRecipePicture"
+                        android:layout_width="76dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/gallery" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnCameraAddRecipePicture"
+                        android:layout_width="76dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/camera" />
+                </LinearLayout>
 
             </LinearLayout>
             
