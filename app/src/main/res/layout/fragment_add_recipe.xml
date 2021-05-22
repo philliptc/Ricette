@@ -80,6 +80,8 @@
                     android:hint="Enter recipe ingredients here"
                     android:textSize="16dp"
                     android:gravity="left"
+                    android:isScrollContainer="true"
+                    android:scrollbars="vertical"
                     android:inputType="textMultiLine"
                     android:padding="8dp"/>
 
@@ -100,6 +102,8 @@
                     android:hint="Enter recipe methods here"
                     android:textSize="16dp"
                     android:gravity="left"
+                    android:isScrollContainer="true"
+                    android:scrollbars="vertical"
                     android:inputType="textMultiLine"
                     android:padding="8dp"
                     />

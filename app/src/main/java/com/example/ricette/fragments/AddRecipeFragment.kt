@@ -75,6 +75,20 @@ class AddRecipeFragment : Fragment() {
             data_ObjectRecipe.add(DataObjectRecipe(recipeName,ingridients,methods)) //parameter terakhir kurang uri image picture
         }
 
+        val btnBackAddRecipeFragment = view.findViewById<Button>(R.id.btnBackAddRecipeFragment)
+
+        btnBackAddRecipeFragment.setOnClickListener {
+            val fragmentManager = fragmentManager
+
+            fragmentManager?.beginTransaction()?.apply {
+                val addRecipeFragment =  AddRecipeFragment()
+                val recipeListFragment = RecipeListFragment()
+                replace(R.id.flMainActivity, recipeListFragment)
+                remove(addRecipeFragment)
+                commit()
+            }
+        }
+
 
 
     }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.example.ricette.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -34,6 +35,35 @@ class RecipeListFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_recipe_list, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val btnAddRecipe = view.findViewById<Button>(R.id.btnAddRecipe)
+        val btnTimer = view.findViewById<Button>(R.id.btnTimer)
+
+        btnAddRecipe.setOnClickListener {
+            val fragmentManager = fragmentManager
+            val addRecipeFragment = AddRecipeFragment()
+
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.flMainActivity, addRecipeFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
+
+        btnTimer.setOnClickListener {
+            val fragmentManager = fragmentManager
+            val timerFragment = TimerFragment()
+
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.flMainActivity, timerFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
     }
 
     companion object {
