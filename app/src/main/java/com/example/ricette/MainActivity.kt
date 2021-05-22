@@ -6,6 +6,7 @@ import android.widget.FrameLayout
 import com.example.ricette.fragments.RecipeListFragment
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

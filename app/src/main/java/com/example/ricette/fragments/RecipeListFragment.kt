@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.ricette.DataObjectRecipe
 import com.example.ricette.R
+import com.example.ricette.adapter.RecipeListCustomAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,6 +23,9 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class RecipeListFragment : Fragment() {
+
+    private val data_ObjectRecipe : MutableList<DataObjectRecipe> = ArrayList()
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -64,6 +71,15 @@ class RecipeListFragment : Fragment() {
                 commit()
             }
         }
+        data_ObjectRecipe.add(DataObjectRecipe("asd","asd","asdasdsda\nasdsadsda"))
+
+        val layouManager = GridLayoutManager(view.context, 2)
+        val adapter = RecipeListCustomAdapter(data_ObjectRecipe, this)
+        val rvMain = view.findViewById<RecyclerView>(R.id.rvMain)
+
+        rvMain.layoutManager = layouManager
+        rvMain.setHasFixedSize(true)
+        rvMain.adapter = adapter
     }
 
     companion object {
