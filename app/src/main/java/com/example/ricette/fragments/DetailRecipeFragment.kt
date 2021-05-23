@@ -2,6 +2,7 @@ package com.example.ricette.fragments
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +13,9 @@ import com.example.ricette.DataObjectRecipe
 import com.example.ricette.R
 
 
-class DetailRecipeFragment : Fragment() {
+class DetailRecipeFragment(data: ArrayList<DataObjectRecipe>) : Fragment() {
 
-    private val data_ObjectRecipe : MutableList<DataObjectRecipe> = ArrayList()
+    private val data_ObjectRecipe : ArrayList<DataObjectRecipe> = data
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +27,7 @@ class DetailRecipeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         val tvNamaDetailRecipeFragment = view.findViewById<TextView>(R.id.tvNamaDetailRecipeFragment)
         val etRecipeNameDetailRecipe = view.findViewById<TextView>(R.id.etRecipeNameDetailRecipe)
@@ -40,24 +42,14 @@ class DetailRecipeFragment : Fragment() {
         val recipePictureUri = Uri.parse(arguments?.getString("recipePictureUri"))
 
         val dataIndex = arguments?.getInt("dataIndex")
+        Log.d("INFO DATA", "sebelum hapus "+data_ObjectRecipe.size.toString())
+
 
         tvNamaDetailRecipeFragment.setText(recipeName)
         etRecipeNameDetailRecipe.setText(recipeIngridients)
         etMethodDetailRecipe.setText(recipeMethods)
 
         btnBackDetailRecipeFragment.setOnClickListener {
-            val fragmentManager = fragmentManager
-            val detailRecipeFragment = DetailRecipeFragment()
-
-            fragmentManager?.beginTransaction()?.apply {
-                replace(R.id.flMainActivity, detailRecipeFragment)
-                remove(this@DetailRecipeFragment)
-                commit()
-            }
-        }
-
-        btnDeleteDetailRecipeFragment.setOnClickListener {
-            data_ObjectRecipe.remove(dataIndex)
             val fragmentManager = fragmentManager
             val recipeListFragment = RecipeListFragment()
 
@@ -66,6 +58,23 @@ class DetailRecipeFragment : Fragment() {
                 remove(this@DetailRecipeFragment)
                 commit()
             }
+        }
+
+        btnDeleteDetailRecipeFragment.setOnClickListener {
+            data_ObjectRecipe.removeAt(dataIndex!!)
+            Log.d("INFO DATA", "sesudah hapus "+data_ObjectRecipe.size.toString())
+            val fragmentManager = fragmentManager
+            val recipeListFragment = RecipeListFragment()
+
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.flMainActivity, recipeListFragment)
+                remove(this@DetailRecipeFragment)
+                commit()
+            }
+        }
+
+        btnEditRecipeFragment.setOnClickListener {
+
         }
 
     }

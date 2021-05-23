@@ -2,10 +2,11 @@ package com.example.ricette
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.FrameLayout
 import com.example.ricette.fragments.RecipeListFragment
 
 class MainActivity : AppCompatActivity() {
+
+    private val data_ObjectRecipe : ArrayList<DataObjectRecipe> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

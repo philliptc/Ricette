@@ -36,7 +36,7 @@ class AddRecipeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private val data_ObjectRecipe : MutableList<DataObjectRecipe> = ArrayList()
+    private val data_ObjectRecipe : ArrayList<DataObjectRecipe> = ArrayList()
     private lateinit var etRecipeName : EditText
     private lateinit var etIngridients : EditText
     private lateinit var etMethods : EditText
