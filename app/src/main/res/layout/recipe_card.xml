@@ -23,6 +23,12 @@
                 android:src="@drawable/icon_food_test"
                 android:background="#B5B5B5"/>
 
+            <ImageView
+                android:id="@+id/ivRecipeDialog"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_baseline_more_vert_24"/>
+
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -37,6 +43,8 @@
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="4dp"/>
+
+
         
     </RelativeLayout>
 

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ricette.DataObjectRecipe
 import com.example.ricette.R
 import com.example.ricette.fragments.DetailRecipeFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class RecipeListCustomAdapter(
         private val data: ArrayList<DataObjectRecipe>,
@@ -45,11 +46,13 @@ class RecipeListCustomAdapter(
         val ivRecipeCard: ImageView
         val tvRecipeCard: TextView
         val cvRecipeCard: CardView
+        val ivRecipeDialog: ImageView
 
         init {
             ivRecipeCard = itemView.findViewById(R.id.ivRecipeCard)
             tvRecipeCard = itemView.findViewById(R.id.tvRecipeCard)
             cvRecipeCard = itemView.findViewById(R.id.cvRecipeCard)
+            ivRecipeDialog = itemView.findViewById(R.id.ivRecipeDialog)
 
             itemView.setOnClickListener {
                 val recipeName = data[adapterPosition].recipename
@@ -76,6 +79,23 @@ class RecipeListCustomAdapter(
                 }
 
             }
+            ivRecipeDialog.setOnClickListener {
+
+                val items = arrayOf("Delete", "Edit")
+
+                MaterialAlertDialogBuilder(itemView.context)
+                        .setItems(items) { dialog, which ->
+                        when(which) {
+                            0 -> {
+                                data.removeAt(adapterPosition)
+                            }
+
+                        }
+                        }
+                        .show()
+
+            }
+
         }
     }
 
