@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ricette.DataObjectRecipe
 import com.example.ricette.R
 import com.example.ricette.adapter.RecipeListCustomAdapter
+import com.google.firebase.database.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,13 +28,8 @@ class RecipeListFragment() : Fragment() {
 
 
     private val data_ObjectRecipe : ArrayList<DataObjectRecipe> = ArrayList()
-
-
-    init {
-        data_ObjectRecipe.add(DataObjectRecipe("asd","asd","asdasdsda\nasdsadsda"))
-        data_ObjectRecipe.add(DataObjectRecipe("asd","asd","asdasdsda\nasdsadsda"))
-        data_ObjectRecipe.add(DataObjectRecipe("asd","asd","asdasdsda\nasdsadsda"))
-    }
+    private lateinit var database: FirebaseDatabase
+    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -43,7 +39,7 @@ class RecipeListFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        getData()
         val btnAddRecipe = view.findViewById<Button>(R.id.btnAddRecipe)
         val btnTimer = view.findViewById<Button>(R.id.btnTimer)
 
@@ -79,6 +75,32 @@ class RecipeListFragment() : Fragment() {
         rvMain.layoutManager = layouManager
         rvMain.setHasFixedSize(true)
         rvMain.adapter = adapter
+    }
+
+    private fun getData() {
+        database = FirebaseDatabase.getInstance()
+        databaseReference = database.getReference("recipes")
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    data_ObjectRecipe.clear()
+                    for (data in snapshot.children) {
+                        val name = data.child("recipename").value.toString()
+                        val ingredients = data.child("ingridients").value.toString()
+                        val methods = data.child("method").value.toString()
+                        val image = data.child("recipepicture").value.toString()
+
+                        data_ObjectRecipe.add(DataObjectRecipe(name, ingredients, methods, image))
+
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("DATA BASE", "Can't load database")
+            }
+
+        })
     }
 
     companion object {

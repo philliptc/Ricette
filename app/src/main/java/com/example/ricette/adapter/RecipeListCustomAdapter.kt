@@ -11,10 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.ricette.DataObjectRecipe
 import com.example.ricette.R
 import com.example.ricette.fragments.DetailRecipeFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.database.*
 
 class RecipeListCustomAdapter(
         private val data: ArrayList<DataObjectRecipe>,
@@ -22,6 +24,8 @@ class RecipeListCustomAdapter(
     ): RecyclerView.Adapter<RecipeListCustomAdapter.ViewHolder>() {
 
     private val itemClass: MutableList<CardView>
+    private lateinit var database: FirebaseDatabase
+    private lateinit var databaseReference: DatabaseReference
 
     init {
         this.itemClass = ArrayList()
@@ -34,7 +38,8 @@ class RecipeListCustomAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvRecipeCard.text = data[position].recipename
-        holder.ivRecipeCard.setImageURI(data[position].recipepicture)
+        holder.ivRecipeCard.load(data[position].recipepicture)
+
         itemClass.add(holder.cvRecipeCard)
     }
 
@@ -54,6 +59,9 @@ class RecipeListCustomAdapter(
             cvRecipeCard = itemView.findViewById(R.id.cvRecipeCard)
             ivRecipeDialog = itemView.findViewById(R.id.ivRecipeDialog)
 
+//            database = FirebaseDatabase.getInstance()
+//            databaseReference = database.getReference("recipes").child(data[adapterPosition].recipename.toString())
+
             itemView.setOnClickListener {
                 val recipeName = data[adapterPosition].recipename
                 val recipeIngridients = data[adapterPosition].ingridients
@@ -61,13 +69,13 @@ class RecipeListCustomAdapter(
                 val recipePictureUri = data[adapterPosition].recipepicture
                 val dataIndex = adapterPosition
 
-                val detailRecipeFragment = DetailRecipeFragment(data)
+                val detailRecipeFragment = DetailRecipeFragment()
                 val bundle = Bundle()
 
                 bundle.putString("recipeName", recipeName)
                 bundle.putString("recipeIngridients", recipeIngridients)
                 bundle.putString("recipeMethods", recipeMethods)
-                bundle.putString("recipePictureUri", recipePictureUri.toString())
+                bundle.putString("recipePictureUri", recipePictureUri)
                 bundle.putInt("dataIndex", dataIndex)
                 detailRecipeFragment.arguments = bundle
 
@@ -79,22 +87,22 @@ class RecipeListCustomAdapter(
                 }
 
             }
-            ivRecipeDialog.setOnClickListener {
-
-                val items = arrayOf("Delete", "Edit")
-
-                MaterialAlertDialogBuilder(itemView.context)
-                        .setItems(items) { dialog, which ->
-                        when(which) {
-                            0 -> {
-                                data.removeAt(adapterPosition)
-                            }
-
-                        }
-                        }
-                        .show()
-
-            }
+//            ivRecipeDialog.setOnClickListener {
+//
+//                val items = arrayOf("Delete", "Edit")
+//
+//                MaterialAlertDialogBuilder(itemView.context)
+//                        .setItems(items) { dialog, which ->
+//                            when(which) {
+//                                0 -> {
+//
+//                                }
+//
+//                            }
+//                        }
+//                        .show()
+//
+//            }
 
         }
     }

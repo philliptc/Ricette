@@ -41,9 +41,10 @@
                 android:text="Edit"
                 android:textColor="@color/white"
                 android:background="@drawable/edit_button"
-                android:layout_toRightOf="@id/tvNamaDetailRecipeFragment"
-                android:layout_marginTop="14dp"
-                android:layout_marginLeft="125dp"/>
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@id/btnDeleteDetailRecipeFragment"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="10dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnDeleteDetailRecipeFragment"
@@ -52,9 +53,10 @@
                 android:background="@drawable/delete_button"
                 android:text="Delete"
                 android:textColor="@color/white"
-                android:layout_toRightOf="@id/btnEditDetailRecipeFragment"
-                android:layout_marginTop="14dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="18dp"/>
 
             <LinearLayout
                 android:id="@+id/lnDetailRecipeForm"
@@ -66,11 +68,11 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="36dp">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnRecipePictureDetailRecipe"
+                <ImageView
+                    android:id="@+id/ivRecipePictureDetail"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:background="@drawable/icon_add_recipe_picture"/>
+                    android:src="@drawable/icon_add_recipe_picture"/>
 
                 <TextView
                     android:layout_width="wrap_content"
