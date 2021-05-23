@@ -84,7 +84,20 @@ class DetailRecipeFragment() : Fragment() {
         }
 
         btnEditRecipeFragment.setOnClickListener {
+            val fragmentManager = fragmentManager
+            val editRecipeFragment = EditRecipeFragment()
+            val bundle = Bundle()
+            bundle.putString("recipeName", recipeName)
+            bundle.putString("recipeIngridients", recipeIngridients)
+            bundle.putString("recipeMethods", recipeMethods)
+            bundle.putString("recipePictureUri", recipePictureUri)
+            editRecipeFragment.arguments = bundle
 
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.flMainActivity, editRecipeFragment)
+                remove(this@DetailRecipeFragment)
+                commit()
+            }
         }
 
     }

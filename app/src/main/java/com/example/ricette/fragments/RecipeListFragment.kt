@@ -26,10 +26,16 @@ private const val ARG_PARAM2 = "param2"
  */
 class RecipeListFragment() : Fragment() {
 
-
     private val data_ObjectRecipe : ArrayList<DataObjectRecipe> = ArrayList()
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
+    val adapter = RecipeListCustomAdapter(data_ObjectRecipe, this)
+
+    init {
+        getData()
+        adapter.notifyDataSetChanged()
+
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -39,7 +45,6 @@ class RecipeListFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getData()
         val btnAddRecipe = view.findViewById<Button>(R.id.btnAddRecipe)
         val btnTimer = view.findViewById<Button>(R.id.btnTimer)
 
@@ -69,7 +74,7 @@ class RecipeListFragment() : Fragment() {
 
 
         val layouManager = GridLayoutManager(view.context, 2)
-        val adapter = RecipeListCustomAdapter(data_ObjectRecipe, this)
+//        val adapter = RecipeListCustomAdapter(data_ObjectRecipe, this)
         val rvMain = view.findViewById<RecyclerView>(R.id.rvMain)
 
         rvMain.layoutManager = layouManager

@@ -137,6 +137,15 @@ class AddRecipeFragment : Fragment() {
             databaseReference = database.getReference("recipes").child(recipeName)
             databaseReference.setValue(recipe)
 
+            val fragmentManager = fragmentManager
+            val recipeListFragment = RecipeListFragment()
+
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.flMainActivity, recipeListFragment)
+                remove(this@AddRecipeFragment)
+                commit()
+            }
+
 //            data_ObjectRecipe.add(DataObjectRecipe(recipeName,ingridients,methods)) //parameter terakhir kurang uri image picture
 
 
