@@ -16,7 +16,7 @@ import com.example.ricette.R
 import com.example.ricette.fragments.DetailRecipeFragment
 
 class RecipeListCustomAdapter(
-        private val data: List<DataObjectRecipe>,
+        private val data: ArrayList<DataObjectRecipe>,
         private val fragment: Fragment
     ): RecyclerView.Adapter<RecipeListCustomAdapter.ViewHolder>() {
 
@@ -58,7 +58,7 @@ class RecipeListCustomAdapter(
                 val recipePictureUri = data[adapterPosition].recipepicture
                 val dataIndex = adapterPosition
 
-                val detailRecipeFragment = DetailRecipeFragment()
+                val detailRecipeFragment = DetailRecipeFragment(data)
                 val bundle = Bundle()
 
                 bundle.putString("recipeName", recipeName)
