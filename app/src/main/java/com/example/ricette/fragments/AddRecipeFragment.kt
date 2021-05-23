@@ -69,7 +69,7 @@ class AddRecipeFragment : Fragment() {
         values.put(MediaStore.Images.Media.TITLE, "New Picture")
         values.put(MediaStore.Images.Media.DESCRIPTION, "From the camera")
 
-        image_uri = ContentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values)
+        image_uri = requireActivity().contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values)
         //camera intent
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         cameraIntent.putExtra (MediaStore.EXTRA_OUTPUT, image_uri)
@@ -98,8 +98,6 @@ class AddRecipeFragment : Fragment() {
         }
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -111,7 +109,6 @@ class AddRecipeFragment : Fragment() {
         btnOpenGallery = view.findViewById(R.id.btnGalleryAddRecipePicture)
         btnOpenCamera = view.findViewById(R.id.btnCameraAddRecipePicture)
 
-
         btnOpenGallery.setOnClickListener {
             val gallery = Intent()
             gallery.type = "image/*"
@@ -122,12 +119,12 @@ class AddRecipeFragment : Fragment() {
         btnOpenCamera.setOnClickListener {
 //            request runtime permission
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if (checkSelfPermission (Manifest.permission.OPEN_CAMERA)
+                if (checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_DENIED ||
-                        checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        checkSelfPermission(requireContext(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 == PackageManager.PERMISSION_DENIED) {
                     // permission ditolak
-                    val permission = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    val permission = arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     // nampilin popup request permission
                     requestPermissions(permission, PERMISSION_CODE)
                 }
@@ -139,7 +136,6 @@ class AddRecipeFragment : Fragment() {
                 openCamera()
             }
         }
-
 
         btnAddRecipe.setOnClickListener {
             val recipeName = etRecipeName.text.toString()
