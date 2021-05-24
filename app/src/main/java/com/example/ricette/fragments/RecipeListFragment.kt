@@ -38,6 +38,7 @@ class RecipeListFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val btnAddRecipe = view.findViewById<Button>(R.id.btnAddRecipe)
         val btnTimer = view.findViewById<Button>(R.id.btnTimer)
+        val btnSetting = view.findViewById<Button>(R.id.btnSetting)
 
         getData()
 
@@ -58,6 +59,17 @@ class RecipeListFragment() : Fragment() {
 
             fragmentManager?.beginTransaction()?.apply {
                 replace(R.id.flMainActivity, timerFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
+
+        btnSetting.setOnClickListener {
+            val fragmentManager = fragmentManager
+            val setting = SettingDarkMode()
+
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.flMainActivity, setting)
                 addToBackStack(null)
                 commit()
             }
