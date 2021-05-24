@@ -1,10 +1,15 @@
 package com.example.ricette.fragments
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.ContentResolver
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -20,13 +25,19 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.NotificationManagerCompat.from
 import androidx.core.content.ContextCompat.checkSelfPermission
+import androidx.core.content.ContextCompat.getSystemService
 import coil.load
 import com.example.ricette.DataObjectRecipe
+import com.example.ricette.MainActivity
 import com.example.ricette.R
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.util.Date.from
 import java.util.jar.Manifest
 
 
@@ -46,6 +57,8 @@ class AddRecipeFragment : Fragment() {
     private lateinit var btnOpenCamera : Button
     private val PERMISSION_CODE = 1000;
     private val IMAGE_PICTURE_CODE = 1001
+    private val CHANEL_ID = "chanel_add"
+    private val notificationId = 200
     var image_uri : Uri? = null
     var imageurl : Uri? = null
 
@@ -125,6 +138,8 @@ class AddRecipeFragment : Fragment() {
     }
 
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -136,6 +151,7 @@ class AddRecipeFragment : Fragment() {
         btnOpenGallery = view.findViewById(R.id.btnGalleryAddRecipePicture)
         btnOpenCamera = view.findViewById(R.id.btnCameraAddRecipePicture)
 
+        createNotificationChanel()
 
         btnOpenGallery.setOnClickListener {
             openGallery()
@@ -192,6 +208,7 @@ class AddRecipeFragment : Fragment() {
                 remove(this@AddRecipeFragment)
                 commit()
             }
+            sendAddNotification(recipeName)
 
 //            data_ObjectRecipe.add(DataObjectRecipe(recipeName,ingridients,methods)) //parameter terakhir kurang uri image picture
 
@@ -210,6 +227,37 @@ class AddRecipeFragment : Fragment() {
                 remove(addRecipeFragment)
                 commit()
             }
+        }
+    }
+
+    private fun createNotificationChanel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Notification Add Recipe"
+            val descriptionText = "Notification Description"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val chanel = NotificationChannel(CHANEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager: NotificationManager = activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(chanel)
+        }
+    }
+
+    fun sendAddNotification(recipeName : String) {
+
+        val intent = Intent(this.context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent = PendingIntent.getActivities(context!!, 0, arrayOf(intent), 0)
+
+        val builder = NotificationCompat.Builder(context!!, CHANEL_ID)
+                .setSmallIcon(R.drawable.icon_food_test)
+                .setContentTitle("Recipe Added")
+                .setContentText("$recipeName is successfully added.")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+        with(NotificationManagerCompat.from(context!!)) {
+            notify(notificationId, builder.build())
         }
     }
 
