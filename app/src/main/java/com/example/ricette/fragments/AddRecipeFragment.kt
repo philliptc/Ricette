@@ -19,9 +19,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.content.ContextCompat.checkSelfPermission
+import coil.load
 import com.example.ricette.DataObjectRecipe
 import com.example.ricette.R
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.util.jar.Manifest
 
 
@@ -29,7 +32,8 @@ class AddRecipeFragment : Fragment() {
 
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
-
+    private lateinit var storage : FirebaseStorage
+    private lateinit var storageReference : StorageReference
     private val data_ObjectRecipe : ArrayList<DataObjectRecipe> = ArrayList()
     private lateinit var etRecipeName : EditText
     private lateinit var etIngridients : EditText
@@ -41,6 +45,7 @@ class AddRecipeFragment : Fragment() {
     private val PERMISSION_CODE = 1000;
     private val IMAGE_PICTURE_CODE = 1001
     var image_uri : Uri? = null
+    var imageurl : Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +67,15 @@ class AddRecipeFragment : Fragment() {
         startActivityForResult(cameraIntent, IMAGE_PICTURE_CODE)
     }
 
+    private fun openGallery(){
+        val gallery = Intent()
+        gallery.type = "image/*"
+        gallery.action = Intent.ACTION_GET_CONTENT
+        gallery.putExtra(MediaStore.EXTRA_OUTPUT, image_uri)
+
+        startActivityForResult(gallery, 100)
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         // dipanggil ketika user menekan ALLOW atau DENY
@@ -78,12 +92,32 @@ class AddRecipeFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         //called when image was captured from camera intent
-        if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICTURE_CODE) {
+            storage = FirebaseStorage.getInstance()
+            storageReference = storage.getReference("recipes/" + etRecipeName.text.toString())
+            val uploadTask = storageReference.putFile(image_uri!!)
+            uploadTask.addOnSuccessListener {
+                storageReference.downloadUrl.addOnCompleteListener {
+                    imageurl = it.result
+                }
+            }
             // set image capture to image view
-            ivRecipePicture.setImageURI(image_uri)
+            ivRecipePicture.load(image_uri)
+        }
+        if (resultCode == Activity.RESULT_OK && requestCode == 100){
+            image_uri = data?.data
+            storage = FirebaseStorage.getInstance()
+            storageReference = storage.getReference("recipes/" + etRecipeName.text.toString())
+            val uploadTask = storageReference.putFile(image_uri!!)
+            uploadTask.addOnSuccessListener {
+                storageReference.downloadUrl.addOnCompleteListener {
+                    imageurl = it.result
+                }
+            }
+            // set gallery image to image view
+            ivRecipePicture.load(image_uri)
         }
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -99,10 +133,7 @@ class AddRecipeFragment : Fragment() {
 
 
         btnOpenGallery.setOnClickListener {
-            val gallery = Intent()
-            gallery.type = "image/*"
-            gallery.action = Intent.ACTION_GET_CONTENT
-            startActivityForResult(gallery, 100)
+            openGallery()
         }
 
         btnOpenCamera.setOnClickListener {
@@ -126,12 +157,11 @@ class AddRecipeFragment : Fragment() {
             }
         }
 
-
         btnAddRecipe.setOnClickListener {
             val recipeName = etRecipeName.text.toString()
             val ingridients = etIngridients.text.toString()
             val methods = etMethods.text.toString()
-            val recipe = DataObjectRecipe(recipeName, ingridients, methods)
+            val recipe = DataObjectRecipe(recipeName, ingridients, methods, imageurl.toString())
 
             database = FirebaseDatabase.getInstance()
             databaseReference = database.getReference("recipes").child(recipeName)
