@@ -31,7 +31,7 @@
             android:layout_toRightOf="@id/btnBackTimerFragment"
             android:layout_marginTop="14dp"
             android:layout_marginLeft="8dp"/>
-        
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cvTimer"
             android:layout_width="340dp"
@@ -47,85 +47,59 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="center_horizontal">
 
-                <EditText
-                    android:id="@+id/etTimerHours"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:selectAllOnFocus="true"
-                    android:text="00"
-                    android:textSize="56dp" />
-                
                 <TextView
+                    android:id="@+id/etTimer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=":"
-                    android:textSize="56dp"
-                    android:gravity="center"/>
-
-                <EditText
-                    android:id="@+id/etTimerMinutes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:text="00:00"
                     android:inputType="number"
-                    android:maxLength="2"
-                    android:selectAllOnFocus="true"
-                    android:text="00"
-                    android:textSize="56dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=":"
-                    android:textSize="56dp"
-                    android:gravity="center"/>
-
-                <EditText
-                    android:id="@+id/etTimerSeconds"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:selectAllOnFocus="true"
-                    android:text="00"
-                    android:textSize="56dp" />
+                    android:textSize="56dp"
+                    android:maxLength="5"/>
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="378dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/cvTimer"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnStartStopTimer"
-                android:layout_width="120dp"
+                android:id="@+id/btnStartTimer"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:text="Start"
-                android:textColor="@color/white"
-                android:textSize="24dp"
-                android:textAllCaps="false"
+                android:layout_marginLeft="18dp"
                 android:background="@drawable/style_button_orange"
-                android:layout_marginRight="18dp"/>
+                android:text="Start"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="24dp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnResetTimer"
-                android:layout_width="120dp"
+                android:id="@+id/btnPause"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:text="Reset"
-                android:textColor="@color/orange_1"
-                android:textSize="24dp"
-                android:textAllCaps="false"
+                android:layout_marginLeft="18dp"
                 android:background="@drawable/style_button_dark_orange_stroke"
-                android:layout_marginLeft="18dp"/>
+                android:text="Pause"
+                android:textAllCaps="false"
+                android:textColor="@color/orange_1"
+                android:textSize="24dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnResume"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="18dp"
+                android:background="@drawable/style_button_orange"
+                android:text="Resume"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="24dp" />
 
         </LinearLayout>
 
