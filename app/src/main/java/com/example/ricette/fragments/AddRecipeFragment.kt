@@ -57,6 +57,7 @@ class AddRecipeFragment : Fragment() {
     private lateinit var btnOpenCamera : Button
     private val PERMISSION_CODE = 1000;
     private val IMAGE_PICTURE_CODE = 1001
+    private val GALLERY_PICTURE_CODE = 1002
     private val CHANEL_ID = "chanel_add"
     private val notificationId = 200
     var image_uri : Uri? = null
@@ -88,7 +89,7 @@ class AddRecipeFragment : Fragment() {
         gallery.action = Intent.ACTION_GET_CONTENT
         gallery.putExtra(MediaStore.EXTRA_OUTPUT, image_uri)
 
-        startActivityForResult(gallery, 100)
+        startActivityForResult(gallery, GALLERY_PICTURE_CODE)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -121,7 +122,7 @@ class AddRecipeFragment : Fragment() {
             // set image capture to image view
 
         }
-        if (resultCode == Activity.RESULT_OK && requestCode == 100){
+        if (resultCode == Activity.RESULT_OK && requestCode == GALLERY_PICTURE_CODE){
             image_uri = data?.data
             storage = FirebaseStorage.getInstance()
             storageReference = storage.getReference("recipes/" + etRecipeName.text.toString())
@@ -208,10 +209,7 @@ class AddRecipeFragment : Fragment() {
                 remove(this@AddRecipeFragment)
                 commit()
             }
-            sendAddNotification(recipeName)
-
-//            data_ObjectRecipe.add(DataObjectRecipe(recipeName,ingridients,methods)) //parameter terakhir kurang uri image picture
-
+            sendAddNotification(recipeName) //send notification after add recipe
 
         }
 
@@ -256,6 +254,7 @@ class AddRecipeFragment : Fragment() {
                 .setContentText("$recipeName is successfully added.")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
         with(NotificationManagerCompat.from(context!!)) {
             notify(notificationId, builder.build())
         }

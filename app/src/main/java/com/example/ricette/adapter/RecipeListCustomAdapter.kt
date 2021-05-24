@@ -51,13 +51,11 @@ class RecipeListCustomAdapter(
         val ivRecipeCard: ImageView
         val tvRecipeCard: TextView
         val cvRecipeCard: CardView
-        val ivRecipeDialog: ImageView
 
         init {
             ivRecipeCard = itemView.findViewById(R.id.ivRecipeCard)
             tvRecipeCard = itemView.findViewById(R.id.tvRecipeCard)
             cvRecipeCard = itemView.findViewById(R.id.cvRecipeCard)
-            ivRecipeDialog = itemView.findViewById(R.id.ivRecipeDialog)
 
 //            database = FirebaseDatabase.getInstance()
 //            databaseReference = database.getReference("recipes").child(data[adapterPosition].recipename.toString())
