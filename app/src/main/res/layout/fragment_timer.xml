@@ -51,11 +51,12 @@
                     android:id="@+id/etTimerHours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
-                    android:inputType="number"
                     android:gravity="center"
-                    android:textSize="56dp"
-                    android:maxLength="2"/>
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:selectAllOnFocus="true"
+                    android:text="00"
+                    android:textSize="56dp" />
                 
                 <TextView
                     android:layout_width="wrap_content"
@@ -68,11 +69,12 @@
                     android:id="@+id/etTimerMinutes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
-                    android:inputType="number"
                     android:gravity="center"
-                    android:textSize="56dp"
-                    android:maxLength="2"/>
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:selectAllOnFocus="true"
+                    android:text="00"
+                    android:textSize="56dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -85,11 +87,12 @@
                     android:id="@+id/etTimerSeconds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
-                    android:inputType="number"
                     android:gravity="center"
-                    android:textSize="56dp"
-                    android:maxLength="2"/>
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:selectAllOnFocus="true"
+                    android:text="00"
+                    android:textSize="56dp" />
 
             </LinearLayout>
 

@@ -9,44 +9,37 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.ricette.DataObjectRecipe
 import com.example.ricette.R
 import com.example.ricette.adapter.RecipeListCustomAdapter
 import com.google.firebase.database.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RecipeListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RecipeListFragment() : Fragment() {
 
     private val data_ObjectRecipe : ArrayList<DataObjectRecipe> = ArrayList()
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
-    val adapter = RecipeListCustomAdapter(data_ObjectRecipe, this)
+//    val adapter = RecipeListCustomAdapter(data_ObjectRecipe, this)
 
-    init {
-        getData()
-        adapter.notifyDataSetChanged()
 
-    }
+//    init {
+//        getData()
+//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_recipe_list, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val btnAddRecipe = view.findViewById<Button>(R.id.btnAddRecipe)
         val btnTimer = view.findViewById<Button>(R.id.btnTimer)
+
+        getData()
 
         btnAddRecipe.setOnClickListener {
             val fragmentManager = fragmentManager
@@ -72,14 +65,6 @@ class RecipeListFragment() : Fragment() {
 
         Log.d("INFO DATA", data_ObjectRecipe.size.toString())
 
-
-        val layouManager = GridLayoutManager(view.context, 2)
-//        val adapter = RecipeListCustomAdapter(data_ObjectRecipe, this)
-        val rvMain = view.findViewById<RecyclerView>(R.id.rvMain)
-
-        rvMain.layoutManager = layouManager
-        rvMain.setHasFixedSize(true)
-        rvMain.adapter = adapter
     }
 
     private fun getData() {
@@ -96,6 +81,14 @@ class RecipeListFragment() : Fragment() {
                         val image = data.child("recipepicture").value.toString()
 
                         data_ObjectRecipe.add(DataObjectRecipe(name, ingredients, methods, image))
+
+                        val layouManager = GridLayoutManager(view?.context, 2)
+                        val adapter = RecipeListCustomAdapter(data_ObjectRecipe, this@RecipeListFragment)
+                        val rvMain = view?.findViewById<RecyclerView>(R.id.rvMain)
+
+                        rvMain?.layoutManager = layouManager
+                        rvMain?.setHasFixedSize(true)
+                        rvMain?.adapter = adapter
 
                     }
                 }

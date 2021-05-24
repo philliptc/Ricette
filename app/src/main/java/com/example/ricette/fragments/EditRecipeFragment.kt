@@ -25,19 +25,22 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-private lateinit var storage : FirebaseStorage
-private lateinit var storageReference : StorageReference
-private lateinit var etRecipeName : EditText
-private lateinit var ivRecipePicture : ImageView
-private lateinit var database : FirebaseDatabase
-private lateinit var databaseReference : DatabaseReference
-private val PERMISSION_CODE = 1000;
-private val IMAGE_PICTURE_CODE = 1001
-var image_uri : Uri? = null
-var imageurl : Uri? = null
-
-
 class EditRecipeFragment : Fragment() {
+
+    private lateinit var storage : FirebaseStorage
+    private lateinit var storageReference : StorageReference
+    private lateinit var ivRecipePicture : ImageView
+    private lateinit var etFormEditRecipeName : EditText
+    private lateinit var etFormEditIngredients : EditText
+    private lateinit var etFormEditMethods: EditText
+    private lateinit var database : FirebaseDatabase
+    private lateinit var databaseReference : DatabaseReference
+    private lateinit var ivEditRecipePicture : ImageView
+    private val PERMISSION_CODE = 1000;
+    private val IMAGE_PICTURE_CODE = 1001
+    private val GALLERY_PICTURE_CODE = 1002
+    var image_uri : Uri? = null
+    var imageurl : Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +68,7 @@ class EditRecipeFragment : Fragment() {
         gallery.action = Intent.ACTION_GET_CONTENT
         gallery.putExtra(MediaStore.EXTRA_OUTPUT, image_uri)
 
-        startActivityForResult(gallery, 100)
+        startActivityForResult(gallery, GALLERY_PICTURE_CODE)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -86,37 +89,40 @@ class EditRecipeFragment : Fragment() {
         //called when image was captured from camera intent
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICTURE_CODE) {
             storage = FirebaseStorage.getInstance()
-            storageReference = storage.getReference("recipes/" + etRecipeName.text.toString())
+            storageReference = storage.getReference("recipes/" + etFormEditRecipeName.text.toString())
+            storageReference.delete()
             val uploadTask = storageReference.putFile(image_uri!!)
             uploadTask.addOnSuccessListener {
                 storageReference.downloadUrl.addOnCompleteListener {
                     imageurl = it.result
+                    ivEditRecipePicture.load(imageurl)
                 }
             }
             // set image capture to image view
-            ivRecipePicture.load(image_uri)
         }
-        if (resultCode == Activity.RESULT_OK && requestCode == 100){
+        if (resultCode == Activity.RESULT_OK && requestCode == GALLERY_PICTURE_CODE){
             image_uri = data?.data
             storage = FirebaseStorage.getInstance()
-            storageReference = storage.getReference("recipes/" + etRecipeName.text.toString())
+            storageReference = storage.getReference("recipes/" + etFormEditRecipeName.text.toString())
+            storageReference.delete()
             val uploadTask = storageReference.putFile(image_uri!!)
             uploadTask.addOnSuccessListener {
                 storageReference.downloadUrl.addOnCompleteListener {
                     imageurl = it.result
+                    ivEditRecipePicture.load(imageurl)
                 }
             }
             // set gallery image to image view
-            ivRecipePicture.load(image_uri)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val etFormEditRecipeName = view.findViewById<EditText>(R.id.etFormEditRecipeName)
-        val etFormEditIngredients = view.findViewById<EditText>(R.id.etFormEditIngredients)
-        val etFormEditMethods = view.findViewById<EditText>(R.id.etFormEditMethods)
+        etFormEditRecipeName = view.findViewById<EditText>(R.id.etFormEditRecipeName)
+        etFormEditIngredients = view.findViewById<EditText>(R.id.etFormEditIngredients)
+        etFormEditMethods = view.findViewById<EditText>(R.id.etFormEditMethods)
+        ivEditRecipePicture = view.findViewById<ImageView>(R.id.ivEditRecipePicture)
         val btnEdit = view.findViewById<Button>(R.id.btnEditFragmentAddRecipe)
         val btnGalleryEditRecipePicture = view.findViewById<Button>(R.id.btnGalleryEditRecipePicture)
         val btnCameraEditRecipePicture = view.findViewById<Button>(R.id.btnCameraEditRecipePicture)
@@ -130,6 +136,7 @@ class EditRecipeFragment : Fragment() {
         etFormEditRecipeName.setText(recipeName)
         etFormEditIngredients.setText(recipeIngridients)
         etFormEditMethods.setText(recipeMethods)
+        ivEditRecipePicture.load(recipePictureUri)
 
         btnGalleryEditRecipePicture.setOnClickListener {
             openGallery()
@@ -163,6 +170,9 @@ class EditRecipeFragment : Fragment() {
 
             database = FirebaseDatabase.getInstance()
             databaseReference = database.getReference("recipes").child(recipeName)
+
+//            databaseReference.removeValue()
+
             databaseReference.setValue(recipe)
 
             val fragmentManager = fragmentManager
