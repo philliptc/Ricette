@@ -4,20 +4,13 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Switch
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.ricette.DataObjectRecipe
 import com.example.ricette.R
-import com.example.ricette.adapter.RecipeListCustomAdapter
-import com.google.firebase.database.*
 
 class SettingDarkMode : Fragment() {
     private lateinit var switchDark: Button
