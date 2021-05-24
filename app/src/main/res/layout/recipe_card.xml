@@ -4,7 +4,8 @@
     android:layout_width="150dp"
     android:layout_height="180dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="12dp"
+    android:layout_margin="12dp">
     
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,12 +23,6 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/icon_food_test"
                 android:background="#B5B5B5"/>
-
-            <ImageView
-                android:id="@+id/ivRecipeDialog"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_baseline_more_vert_24"/>
 
         </androidx.cardview.widget.CardView>
 

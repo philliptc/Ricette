@@ -113,8 +113,8 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="24dp"/>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnEditRecipePicture"
+                <ImageView
+                    android:id="@+id/ivEditRecipePicture"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:background="@drawable/icon_add_recipe_picture"/>
