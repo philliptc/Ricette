@@ -15,13 +15,16 @@ import com.example.ricette.DataObjectRecipe
 import com.example.ricette.R
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
 class DetailRecipeFragment() : Fragment() {
 
-    private val data_ObjectRecipe : ArrayList<DataObjectRecipe> = ArrayList()
     private lateinit var databaseReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
+    private lateinit var storage: FirebaseStorage
+    private lateinit var storageReference: StorageReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,7 +73,10 @@ class DetailRecipeFragment() : Fragment() {
 
             database = FirebaseDatabase.getInstance()
             databaseReference = database.getReference("recipes").child(recipeName.toString())
+            storage = FirebaseStorage.getInstance()
+            storageReference = storage.getReference("recipes/$recipeName")
 
+            storageReference.delete()
             databaseReference.removeValue()
 
             val fragmentManager = fragmentManager

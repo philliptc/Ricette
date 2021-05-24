@@ -6,8 +6,6 @@ import com.example.ricette.fragments.RecipeListFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val data_ObjectRecipe : ArrayList<DataObjectRecipe> = ArrayList()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,4 +21,5 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 }
