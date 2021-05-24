@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.SyncStateContract.Helpers.insert
+import android.text.TextUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -165,6 +166,18 @@ class AddRecipeFragment : Fragment() {
             val recipeName = etRecipeName.text.toString()
             val ingridients = etIngridients.text.toString()
             val methods = etMethods.text.toString()
+
+            if (TextUtils.isEmpty(recipeName)) {
+                etRecipeName.error = "Recipe name is required!"
+                return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(ingridients)) {
+                etIngridients.error = "Recipe ingredients is required!"
+            }
+            if (TextUtils.isEmpty(methods)) {
+                etMethods.error = "Recipe methods is required!"
+            }
+
             val recipe = DataObjectRecipe(recipeName, ingridients, methods, imageurl.toString())
 
             database = FirebaseDatabase.getInstance()
