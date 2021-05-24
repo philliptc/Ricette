@@ -18,6 +18,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import coil.load
 import com.example.ricette.DataObjectRecipe
@@ -99,10 +100,12 @@ class AddRecipeFragment : Fragment() {
             uploadTask.addOnSuccessListener {
                 storageReference.downloadUrl.addOnCompleteListener {
                     imageurl = it.result
+                    Log.d("UPLOAD PICTURE", "Upload picture: $imageurl")
+                    ivRecipePicture.load(imageurl)
                 }
             }
             // set image capture to image view
-            ivRecipePicture.load(image_uri)
+
         }
         if (resultCode == Activity.RESULT_OK && requestCode == 100){
             image_uri = data?.data
@@ -112,10 +115,11 @@ class AddRecipeFragment : Fragment() {
             uploadTask.addOnSuccessListener {
                 storageReference.downloadUrl.addOnCompleteListener {
                     imageurl = it.result
+                    Log.d("UPLOAD PICTURE", "Upload picture: $imageurl")
+                    ivRecipePicture.load(imageurl)
                 }
             }
             // set gallery image to image view
-            ivRecipePicture.load(image_uri)
         }
     }
 
