@@ -119,7 +119,6 @@ class AddRecipeFragment : Fragment() {
                     ivRecipePicture.load(imageurl)
                 }
             }
-            // set image capture to image view
 
         }
         if (resultCode == Activity.RESULT_OK && requestCode == GALLERY_PICTURE_CODE){
@@ -134,7 +133,6 @@ class AddRecipeFragment : Fragment() {
                     ivRecipePicture.load(imageurl)
                 }
             }
-            // set gallery image to image view
         }
     }
 

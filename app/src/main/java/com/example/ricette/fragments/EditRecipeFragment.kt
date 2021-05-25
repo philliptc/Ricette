@@ -90,7 +90,6 @@ class EditRecipeFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICTURE_CODE) {
             storage = FirebaseStorage.getInstance()
             storageReference = storage.getReference("recipes/" + etFormEditRecipeName.text.toString())
-            storageReference.delete()
             val uploadTask = storageReference.putFile(image_uri!!)
             uploadTask.addOnSuccessListener {
                 storageReference.downloadUrl.addOnCompleteListener {
@@ -166,7 +165,7 @@ class EditRecipeFragment : Fragment() {
             val recipeName = etFormEditRecipeName.text.toString()
             val ingridients = etFormEditIngredients.text.toString()
             val methods = etFormEditMethods.text.toString()
-            val recipe = DataObjectRecipe(recipeName, ingridients, methods, imageurl.toString())
+            val recipe = DataObjectRecipe(recipeName, ingridients, methods, recipePictureUri)
 
             database = FirebaseDatabase.getInstance()
             databaseReference = database.getReference("recipes").child(recipeName)
