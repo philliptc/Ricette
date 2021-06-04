@@ -181,6 +181,8 @@ class AddRecipeFragment : Fragment() {
             val recipeName = etRecipeName.text.toString()
             val ingridients = etIngridients.text.toString()
             val methods = etMethods.text.toString()
+            database = FirebaseDatabase.getInstance()
+            databaseReference = database.getReference("recipes").child(recipeName)
 
             if (TextUtils.isEmpty(recipeName)) {
                 etRecipeName.error = "Recipe name is required!"
@@ -195,8 +197,7 @@ class AddRecipeFragment : Fragment() {
 
             val recipe = DataObjectRecipe(recipeName, ingridients, methods, imageurl.toString())
 
-            database = FirebaseDatabase.getInstance()
-            databaseReference = database.getReference("recipes").child(recipeName)
+
             databaseReference.setValue(recipe)
 
             val fragmentManager = fragmentManager
@@ -257,6 +258,7 @@ class AddRecipeFragment : Fragment() {
             notify(notificationId, builder.build())
         }
     }
+
 
     companion object {
 
